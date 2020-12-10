@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Countdown to 2B POG</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
+            *{
+                text-align:center;
+                font-family: monospace;
+                cursor:none;
+                user-select:none;
+                color:white;
+                font-family:"Source Code Pro";
+                font-weight:600;
+            }
+            body,html{
+                padding:0px;
+                margin:0px;
+                background-color:rgb(20,30,50);
+                /*zoom:92.5%;*/
+                width:100%;
+                height:100%;
+            }
+            body{
+                background-color:transparent;
+            }
+            h1{
+                margin:5px;
+            }
+            #title{
+                font-family: "Righteous",sans-serif;
+                font-size:100px;
+                margin:0px;
+                color:orangered; 
+            }
+            #title::before,#title::after{
+                content:" - ";
+            }
+            #countdown,#countdown2{
+                font-size:80px;
+            }
+            sp{
+                color:coral;
+            }
+            sp::before,sp::after{
+                content:" -~- ";
+            }
+            there_are{
+                color:lightgreen;
+            }
+            there_are::before,there_are::after{
+                content:" == ";
+            }
+            #countdown2{
+                color:aquamarine;
+            }
+            
+            ::-webkit-scrollbar{
+                display:none;
+            }
+            tb{
+                color:deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">Countdown to 2B POG</h1>
+        <h1 id="countdown">Please enable JavaScript and date/time access</h1>
+        <h1 id="countdown2">Please enable JavaScript and date/time access</h1>
+        <script>
+            const TwoBilPOG=new Date(2000000000*1000); 
+            bgColor=0;
+            function yay(){
+                if(bgColor>360){
+                    bgColor=0;
+                }
+                //console.log(bgColor);
+                clearInterval(interval);
+                document.querySelector("#countdown").innerHTML="YAY!";
+                document.querySelector("#countdown2").innerHTML="<tb>Party</tb> Time!";
+                document.querySelector("body").style.backgroundColor="hsl("+bgColor+",100%,60%)";
+                bgColor++;
+            }
+            function doYay(){
+                setInterval(yay,1);
+            }
+            function dateStuff(){
+                var rn=new Date();
+                var millisLeft=2000000000*1000-rn.getTime();
+                if(millisLeft>0){
+                    var secondsLeft=millisLeft/1000;
+                    var years=Math.floor(secondsLeft/31536000);
+                    secondsLeft-=years*31536000;
+                    var days=Math.floor(secondsLeft/86400);
+                    secondsLeft-=days*86400;
+                    var hours=Math.floor(secondsLeft/3600);
+                    secondsLeft-=hours*3600;
+                    var minutes=Math.floor(secondsLeft/60);
+                    secondsLeft-=minutes*60;
+
+                    document.querySelector("#countdown").innerHTML=(
+    `<there_are>There are:</there_are><br>
+    <tb>${years}</tb> Years, <tb>${days}</tb> days, <br>
+    <tb>${hours}</tb> hours, <tb>${minutes}</tb> minutes
+    <br><sp>and</sp><br> 
+    ${Math.floor(secondsLeft)} seconds <br>
+    <sp>until</sp></br>
+    <tb>2,000,000,000</tb> Unix Time <br>
+    on <tb>${TwoBilPOG.toLocaleDateString()}</tb>`);
+                    document.querySelector("#countdown2").innerText=`(${millisLeft}ms)`
+                } else {
+                    doYay();
+                }
+            }
+            let interval=0;
+            interval=window.setInterval(dateStuff,1);
+            // doYay();
+            
+        </script>
+    </body>
+</html>
