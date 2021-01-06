@@ -239,14 +239,10 @@ function selectStart(e){
     if(e.button==0){
         rmx=e.pageX;
         rmy=e.pageY;
-        setTimeout(function(){
-            if(mousedown){
-                document.body.addEventListener("mousemove",select);
-                document.body.addEventListener("mouseup",selectEnd);
-                $("#sel").style.display="block";
-                select(e);
-            }
-        },100);
+        document.body.addEventListener("mousemove",select);
+        document.body.addEventListener("mouseup",selectEnd);
+        $("#sel").style.display="block";
+        select(e);
     }
     document.activeElement.blur();
     
@@ -299,4 +295,8 @@ function mode(){
 
 if(location.search!=""){
     load(decodeURIComponent(location.search.split("=")[1]));
+}
+
+$("#new").onmousedown=function(e){
+    e.stopPropagation();
 }
