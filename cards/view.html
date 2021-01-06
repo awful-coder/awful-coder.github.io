@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-32">
+        <title>Cards</title>
+        <link id="stylesheet" rel="stylesheet">
+        <link href="base.css" rel="stylesheet">
+        <link href="icon.svg" rel="icon">
+        <style type="text/css"></style>
+    </head>
+    <body>
+        <div id="cards"></div>
+        <a id="download" href="" download="New Cards Document.crd" type="application/json" target="_blank"></a> 
+        
+        <noscript id="noscript"><h1>BRUH<br>turn on js why u meanie</h1></noscript>	
+        <div id="toolbar">
+            <button class="tool" id="theme" title="Toggle Theme" onclick="toggleTheme(); return false;" style="margin-left:260px; transform:rotate(-90deg);">&#9775;</button>
+            <button class="tool" id="upload" title="Upload" onclick="loadFile(); return false;">&#8682;</button>
+            <button class="tool" id="download" title="Download" onclick="saveFile();" style="transform:rotate(180deg);">&#8682;</button>
+            <button class="tool" title="Edit Mode" style="margin-left:50px;" onclick="mode();">&#9998;</button>
+        </div>
+        
+        <script type="text/javascript" src="view.js">
+        </script>
+
+        <div id="sel" draggable="false"></div>
+    </body>
+</html>

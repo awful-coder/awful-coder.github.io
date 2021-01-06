@@ -30,39 +30,8 @@ function card(header,content,x,y,color,w,h){
         header:document.createElement("div"),
         headertext:document.createElement("input"),
         content:document.createElement("div"),
-        close:document.createElement("button"),
     };
     card.card.onmousedown=function(e){e.stopPropagation();};
-
-    function startDrag(e){ // copying some code from w3schools, dont mind me
-        document.activeElement.blur();
-        if(e.button==0){
-            rmx = e.clientX;
-            rmy = e.clientY;
-            document.addEventListener("mouseup",stopDrag);
-            document.addEventListener("mousemove",drag);
-            e.stopPropagation();
-        }
-    }
-    function drag(e){
-        var newx=card.card.offsetLeft-(rmx-e.clientX);
-        var newy=card.card.offsetTop-(rmy-e.clientY);
-        if(newx<0){
-            newx=0;
-        }
-        if(newy<60){
-            newy=60;
-        }
-        card.card.style.left=newx+"px";
-        card.card.style.top=newy+"px";
-        rmx = e.clientX;
-        rmy = e.clientY;
-    }
-    function stopDrag(){
-        $("#cards").appendChild($("#cards").removeChild(card.card));
-        document.removeEventListener("mouseup",stopDrag);
-        document.removeEventListener("mousemove",drag);
-    }
     
     card.card.className="card";
     card.card.style.backgroundColor=color;
@@ -71,23 +40,8 @@ function card(header,content,x,y,color,w,h){
     card.card.style.top=y;
     card.card.style.left=x;
     
-    card.close.innerHTML="&#10006";
-    card.close.className="close";
-    
-    card.close.onclick=function(){
-        cards.splice(cards.indexOf(card),1);
-        $("#cards").removeChild(card.card);
-    };
-    card.close.onmousedown=function(e){e.stopPropagation();};
-    function focusHeader(e){
-        $("#cards").appendChild($("#cards").removeChild(card.card));
-        card.headertext.onfocus=null;
-        card.headertext.focus();
-        document.execCommand("selectAll");
-        card.headertext.onfocus=focusHeader;
-    }
 
-    card.headertext.onfocus=focusHeader;
+    card.headertext.readOnly=true;
     card.headertext.onmousedown=function(e){e.stopPropagation();};
     
     card.header.className="header";
@@ -98,25 +52,14 @@ function card(header,content,x,y,color,w,h){
     card.headertext.style.color=isColorBright(card.color)?"black":"white";
     card.headertext.spellcheck=false;
     card.header.appendChild(card.headertext);
-    card.header.appendChild(card.close);
 
-    card.header.onmousedown=startDrag;
-    card.header.style.cursor="move";
 
     card.content.innerHTML=content;
     card.content.className="content";
-    card.content.contentEditable=true;
+    card.content.contentEditable=false;
 
     card.card.appendChild(card.header);
     card.card.appendChild(card.content);
-    
-    card.card.oncontextmenu=function(e){
-        e.preventDefault();
-        $("#contextMenu").style.left=e.clientX+"px";
-        $("#contextMenu").style.top=e.clientY+"px";
-        $("#contextMenu").style.display="block";
-        contextMenuSubject=card;
-    };
 
     $("#cards").appendChild(card.card);
     
@@ -132,35 +75,6 @@ document.body.addEventListener("mousemove",function(e){
     }
 
 });
-
-document.body.onclick=function(){
-    $("#contextMenu").style.display="none";
-}
-
-function changeColor(){
-    var cs=$("#colorselect");
-    cs.value=contextMenuSubject.color;
-    cs.click();
-    cs.onchange=function(){
-        contextMenuSubject.card.style.backgroundColor=this.value.toString();
-        contextMenuSubject.color=this.value.toString();
-        contextMenuSubject.headertext.style.color=isColorBright(contextMenuSubject.color)?"black":"white";
-    }.bind(cs);
-}
-function duplicateCard(){
-    var cardSave=cardToSaveJSON(contextMenuSubject);
-    console.log(cardSave);
-    console.log((cardSave.x+50)+"px",(cardSave.y+50)+"px");
-    card(cardSave.header,cardSave.content,(cardSave.x+50)+"px",(cardSave.y+50)+"px",cardSave.color,cardSave.w,cardSave.h);
-}
-function removeCard(){
-    cards.splice(cards.indexOf(contextMenuSubject),1);
-    $("#cards").removeChild(contextMenuSubject.card);
-}
-
-function newCard(){
-    card("New Card","");
-}
 
 var darktheme=localStorage.getItem("NotesDarkTheme")=="true";
 stylesheet.href=darktheme?"dark.css":"light.css";
@@ -294,7 +208,7 @@ document.body.addEventListener("mousedown",function(){mousedown=true;})
 document.body.addEventListener("mouseup",function(){mousedown=false;})
 
 function mode(){
-    var edit=open("view.html?save="+encodeURIComponent(save()),"_self");
+    var edit=open("edit.html?save="+encodeURIComponent(save()),"_self");
 }
 
 if(location.search!=""){
