@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-32">
+        <title>Cards</title>
+        <link id="stylesheet" rel="stylesheet">
+        <link href="base.css" rel="stylesheet">
+        <link href="icon.svg" rel="icon">
+        <style type="text/css"></style>
+    </head>
+    <body>
+        <div id="cards"></div>
+        <input type="color" id="colorselect">
+        <a id="download" href="" download="New Cards Document.crd" type="application/json" target="_blank"></a> 
+        
+        <noscript id="noscript"><h1>BRUH<br>turn on js why u meanie</h1></noscript>	
+        <div id="toolbar">
+            <button class="tool" id="bold" title="Bold" onclick="document.execCommand('bold'); return false;"><b><i>B</i></b></button>
+            <button class="tool" id="italic" title="Italic" onclick="document.execCommand('italic'); return false;"><b><i>I</i></b></button>
+            <button class="tool" id="strike" title="Strikethrough" onclick="document.execCommand('strikeThrough'); return false;"><b><i><s>S</s></i></b></button>
+            <img class="normal" id="image" title="Insert Image" onclick="document.execCommand('insertImage',false,prompt('Image Source:')); return false;" style="width:30px; height:30px; float:left;cursor:pointer;" src="imageicon.png">
+            <button class="tool" id="link" title="Change selected text into a link" onclick="document.execCommand('createLink',false,prompt('URL:')); return false;">&#128279;</button>
+            <button class="tool" id="font" title="Change Font" onclick="document.execCommand('fontName',false,prompt('Font Name:')); return false;"><b><i>F</i></b></button>
+            <button class="tool" id="fontsize" title="Change Font Size" onclick="document.execCommand('fontSize',false,prompt('Font Size: (1-7)')); return false;"><b><i>fs</i></b></button>
+            <button class="tool" id="theme" title="Toggle Theme" onclick="toggleTheme(); return false;" style="margin-left:50px; transform:rotate(-90deg);">&#9775;</button>
+            <button class="tool" id="upload" title="Upload" onclick="loadFile(); return false;">&#8682;</button>
+            <button class="tool" id="download" title="Download" onclick="saveFile();" style="transform:rotate(180deg);">&#8682;</button>
+        </div>
+        <div id="contextMenu">
+            <ul class="contextMenu">
+                <li><button class="contextMenuItem" id="cbold" onclick="document.execCommand('bold'); return false;">Bold</button></li>
+                <li><button class="contextMenuItem" id="citalic" onclick="document.execCommand('italic'); return false;">Italicize</button></li>
+                <li><button class="contextMenuItem" id="cdelete" onclick="removeCard(); return false;">Delete</button></li>
+                <li><button class="contextMenuItem" id="cchangecolor" onclick="changeColor(); return false;">Change Color</button></li>
+                <li><button class="contextMenuItem" id="cduplicate" onclick="duplicateCard(); return false;">Duplicate</button></li>
+            </ul>
+        </div>
+        
+        <script type="text/javascript" src="edit.js">
+        </script>
+        
+        <button id="new" onclick="newCard();console.log('e');">+</button>
+        
+        <div id="sel" draggable="false"></div>
+    </body>
+</html>

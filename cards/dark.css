@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+.card{
+    color:white;
+}
+.headertext{
+    color:white;
+    background-color:transparent;
+}
+
+.content{
+    background-color: rgb(50,50,70);
+    color:white;
+}
+
+#toolbar{
+    background-color:rgba(100,100,100,0.5);
+}
+.tool{
+    background-color:gray;
+    color:white;
+}
+.tool:hover{
+    background-color:rgb(100,100,100);
+}
+
+body{
+    background-color:rgb(30,30,40);
+    background-image:radial-gradient(circle, rgb(50,50,50) 2px, transparent 0px);
+}
+
+*[contenteditable]:hover,input[type="text"]:hover{
+    outline-color: rgba(100,100,100,0.5);
+}
+*[contenteditable]:focus,input[type="text"]:focus{
+    outline-color: rgb(150,240,255);
+}
+
+#contextMenu{
+    background-color:dimgray;
+    color:white;
+    border: 1px solid lightgray;
+}
+
+.contextMenuItem:hover{
+    background-color:dimgray;
+}
+
+#sel{
+    border:3px solid rgb(70,70,70);
+    background-color: rgba(80,80,80,0.4)
+}
