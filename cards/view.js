@@ -210,3 +210,8 @@ function mode(){
 if(location.search!=""){
     load(decodeURIComponent(location.search.split("=")[1]));
 }
+
+function noSelect(e){
+    e.stopPropagation();
+}
+$("#toolbar").onmousedown=noSelect;

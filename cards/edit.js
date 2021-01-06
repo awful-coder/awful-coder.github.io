@@ -297,6 +297,10 @@ if(location.search!=""){
     load(decodeURIComponent(location.search.split("=")[1]));
 }
 
-$("#new").onmousedown=function(e){
+function noSelect(e){
     e.stopPropagation();
 }
+
+$("#new").onmousedown=noSelect;
+$("#contextMenu").onmousedown=noSelect;
+$("#toolbar").onmousedown=noSelect;
