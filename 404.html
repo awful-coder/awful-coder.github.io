@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>awful-coder's homepage</title>
+        <link href="indexstuff/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body style="padding:100px;width:auto;">
+        <h1 class="large" style="text-align:left">404</h1>
+        <p>So basically what happened is<br><strong style="font-weight:700;">this page doesnt exist anymore</strong>.<br>What this directly translates to in english is:<br><span id="lol" style="font-size:50px;transition:font-size 0.25s;"><strong style="font-weight:700;color:inherit;">You're screwed.</strong></span></p>
+        <p>here's a <a href="/">link</a> to my homepage, i guess</p>
+        <p id="thx_sucker" style="display:none;">also try clicking<br><span style="font-size:10px">screw you document interaction</span></p>
+        <hr><hr>
+        <p>if the copyright people really care i'll take down the music</p>
+        
+        <script src="indexstuff/script.js" type="text/javascript"></script>
+        <script>
+            var loltext=document.getElementById("lol");
+            var lol=new Audio("https://t4.bcbits.com/stream/5b2c7b86ab794118e425b7f1c0b1a6de/mp3-128/2046566819?p=0&ts=1610122443&t=008ba710a176495897a56bf2d085950bcecf6817&token=1610122443_19665c0843c874a15dc4439dba6adf1cbd48bffd");
+            var tm=0;
+            var tm2=setTimeout(function(){
+                //document.getElementById("thx_sucker").style.display="block"; // too obvious, gives it away
+            },2000);
+            lol.currentTime=5;
+            function play(e){
+                e.preventDefault();
+                setTimeout(function(){
+                    lol.play();
+                    setTimeout(function(){
+                        lol.pause();
+                        clearInterval(tm);
+                        window.open("/","_self");
+                    },37300);
+                    setTimeout(function(){
+                        document.body.style.backgroundColor="rgb(50,0,0)";
+                        document.body.style.setProperty("--c","rgba(calc(var(--b) * 0.7),0,0,1)");
+                        loltext.style.color="red";
+                    },9500);
+                },250);
+                document.body.onmousedown=null;
+                document.body.onkeydown=null;
+                tm=setInterval(function(){
+                    loltext.style.fontSize="70px";
+                    setTimeout(function(){
+                        loltext.style.fontSize="50px";
+                    },250);
+                },937);
+                document.getElementById("thx_sucker").style.display="none";
+                clearTimeout(tm2);
+            }
+            document.body.onmousedown=play;
+            document.body.onkeydown=play;
+        </script>
+    </body>
+</html>
