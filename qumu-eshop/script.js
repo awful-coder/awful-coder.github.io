@@ -1,4 +1,3 @@
-// key AIzaSyCjIAAMHQW2bQi5H9-w1lEdcRrfQGuf15g
 var tab = location.hash.slice(1);
 var content = document.querySelector(".content");
 
@@ -10,7 +9,7 @@ var nextPageToken = null;
 function createCard(id){
     var link = document.createElement("a");
     link.className = "card-container";
-    link.href = `http://youtu.be/${id}`;
+    link.href = `https://youtu.be/${id}`;
 
     var card = document.createElement("div");
     card.className = "card";
@@ -18,7 +17,7 @@ function createCard(id){
     var thumbnail = document.createElement("div");
     thumbnail.className = "vd-thumb";
     var thumbimg = document.createElement("img");
-    thumbimg.src = `http://img.youtube.com/vi/${id}/sddefault.jpg`;
+    thumbimg.src = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
     thumbnail.appendChild(thumbimg);
 
     card.appendChild(thumbnail);
