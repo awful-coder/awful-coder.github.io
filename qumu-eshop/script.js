@@ -105,6 +105,6 @@ function init(){
 
 if(!Object.keys(tabs).includes(tab)){
     location.hash="recent";
-    location.reload():
+    location.reload();
 }
 init();
